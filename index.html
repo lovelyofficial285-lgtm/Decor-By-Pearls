@@ -1,0 +1,2102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="description"
+    content="Decor By Pearls creates refined interiors and luxury spaces across Chandigarh, Mohali, Zirakpur, and destination locations across India."
+  />
+
+  <title>Decor By Pearls — Refined Spaces</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    @font-face {
+      font-family: "Bisquine";
+      src: local("Bisquine");
+      font-display: swap;
+    }
+
+    :root {
+      --midnight: #102542;
+      --sapphire: #1e3a5f;
+      --champagne: #d8c3a5;
+      --ivory: #faf8f5;
+      --brass: #c79c5a;
+      --muted: #687487;
+      --white: #ffffff;
+
+      --heading-font: "Bisquine", Georgia, serif;
+      --body-font: "Inter", Arial, sans-serif;
+
+      --section-padding: clamp(72px, 10vw, 140px);
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      overflow-x: hidden;
+      color: var(--midnight);
+      background: var(--ivory);
+      font-family: var(--body-font);
+      line-height: 1.6;
+    }
+
+    body.is-loading,
+    body.preloader-active,
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    body.is-loading > *:not(.preloader) {
+      opacity: 0;
+    }
+
+    img,
+    video {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      color: var(--brass);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--heading-font);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+    }
+
+    h1 {
+      font-size: clamp(3.2rem, 9vw, 7.5rem);
+    }
+
+    h2 {
+      font-size: clamp(2.4rem, 5vw, 4.8rem);
+    }
+
+    h3 {
+      font-size: clamp(1.4rem, 2vw, 2rem);
+    }
+
+    p {
+      color: var(--muted);
+    }
+
+    /* =========================================
+       PRELOADER
+    ========================================= */
+
+    .preloader {
+      position: fixed;
+      z-index: 1000;
+      inset: 0;
+      overflow: hidden;
+      color: var(--midnight);
+      background: var(--white);
+    }
+
+    .preloader__content {
+      position: absolute;
+      z-index: 3;
+      top: 50%;
+      left: 50%;
+      width: min(90%, 520px);
+      text-align: center;
+      transform: translate(-50%, -50%);
+    }
+
+    .preloader__brand {
+      display: block;
+      color: var(--sapphire);
+      font-family: var(--heading-font);
+      font-size: clamp(2.5rem, 8vw, 5.5rem);
+      line-height: 0.9;
+      white-space: nowrap;
+    }
+
+    .preloader__line {
+      width: min(180px, 45%);
+      height: 1px;
+      margin: 22px auto 16px;
+      border: 0;
+      background: var(--brass);
+      transform-origin: center;
+    }
+
+    .preloader__subtitle {
+      display: block;
+      color: var(--sapphire);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .preloader__curtain {
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      background: var(--white);
+      transform-origin: bottom;
+    }
+
+    .preloader__curtain::after {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 5px;
+      content: "";
+      background: var(--brass);
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+
+    /* =========================================
+       NAVBAR
+    ========================================= */
+
+    .navbar {
+      position: fixed;
+      z-index: 100;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px 0;
+      transition:
+        padding 0.3s ease,
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .navbar.is-scrolled {
+      padding: 11px 0;
+      background: rgba(250, 248, 245, 0.86);
+      box-shadow: 0 10px 30px rgba(16, 37, 66, 0.08);
+      backdrop-filter: blur(16px);
+    }
+
+    .navbar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      color: var(--ivory);
+      font-family: var(--heading-font);
+      font-size: 1.45rem;
+      line-height: 0.85;
+      transition: color 0.3s ease;
+    }
+
+    .logo small {
+      margin-top: 7px;
+      color: var(--champagne);
+      font-family: var(--body-font);
+      font-size: 0.47rem;
+      font-weight: 700;
+      letter-spacing: 0.19em;
+      text-transform: uppercase;
+    }
+
+    .navbar.is-scrolled .logo {
+      color: var(--midnight);
+    }
+
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 28px;
+      color: var(--ivory);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .navbar.is-scrolled .nav-links {
+      color: var(--midnight);
+    }
+
+    .nav-links a {
+      position: relative;
+    }
+
+    .nav-links a::after {
+      position: absolute;
+      right: 0;
+      bottom: -8px;
+      left: 0;
+      height: 1px;
+      content: "";
+      background: var(--brass);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .navbar > .container > .button {
+      display: none;
+      color: var(--ivory);
+    }
+
+    .navbar.is-scrolled > .container > .button {
+      color: var(--midnight);
+    }
+
+    /* =========================================
+       BUTTONS
+    ========================================= */
+
+    .button {
+      position: relative;
+      isolation: isolate;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      overflow: hidden;
+      border: 1px solid var(--brass);
+      border-radius: 999px;
+      padding: 0.8rem 1.35rem;
+      color: var(--midnight);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: transform 0.3s ease;
+    }
+
+    .button::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      content: "";
+      background: var(--brass);
+      transform: translateX(-101%);
+      transition: transform 0.4s ease;
+    }
+
+    .button:hover {
+      transform: scale(1.03);
+    }
+
+    .button:hover::before {
+      transform: translateX(0);
+    }
+
+    /* =========================================
+       MOBILE MENU BUTTON
+    ========================================= */
+
+    .menu-toggle {
+      position: relative;
+      z-index: 130;
+      display: flex;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      flex-direction: column;
+      border: 1px solid rgba(250, 248, 245, 0.5);
+      border-radius: 50%;
+      color: var(--ivory);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .navbar.is-scrolled .menu-toggle {
+      border-color: var(--sapphire);
+      color: var(--midnight);
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 16px;
+      height: 1px;
+      background: currentColor;
+      transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+    }
+
+    .menu-toggle.is-active span:first-child {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .menu-toggle.is-active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.is-active span:last-child {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    /* =========================================
+       MOBILE DRAWER
+    ========================================= */
+
+    .drawer-backdrop {
+      position: fixed;
+      z-index: 110;
+      inset: 0;
+      background: rgba(4, 15, 28, 0.58);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      backdrop-filter: blur(5px);
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      z-index: 120;
+      top: 0;
+      right: 0;
+      display: flex;
+      width: min(88vw, 390px);
+      height: 100svh;
+      padding: 28px 24px;
+      flex-direction: column;
+      color: var(--ivory);
+      background: var(--midnight);
+      box-shadow: -20px 0 60px rgba(4, 15, 28, 0.25);
+      transform: translateX(105%);
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .mobile-drawer__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(216, 195, 165, 0.28);
+    }
+
+    .mobile-drawer__label {
+      color: var(--champagne);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .drawer-close {
+      position: relative;
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border: 1px solid rgba(216, 195, 165, 0.55);
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .drawer-close span {
+      position: absolute;
+      width: 16px;
+      height: 1px;
+      background: var(--champagne);
+    }
+
+    .drawer-close span:first-child {
+      transform: rotate(45deg);
+    }
+
+    .drawer-close span:last-child {
+      transform: rotate(-45deg);
+    }
+
+    .mobile-drawer__links {
+      display: flex;
+      margin-top: 48px;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .mobile-drawer__links a {
+      position: relative;
+      width: fit-content;
+      color: var(--ivory);
+      font-family: var(--heading-font);
+      font-size: clamp(2rem, 8vw, 3rem);
+      line-height: 1;
+      opacity: 0;
+      transform: translateX(24px);
+    }
+
+    .mobile-drawer__links a::after {
+      position: absolute;
+      right: -22px;
+      bottom: -8px;
+      left: 0;
+      height: 1px;
+      content: "";
+      background: var(--brass);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .mobile-drawer__links a:hover::after,
+    .mobile-drawer__links a:focus-visible::after {
+      transform: scaleX(1);
+    }
+
+    .mobile-drawer__footer {
+      margin-top: auto;
+      padding-top: 24px;
+      border-top: 1px solid rgba(216, 195, 165, 0.28);
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    .mobile-drawer__footer p {
+      max-width: 240px;
+      color: rgba(250, 248, 245, 0.68);
+      font-size: 0.85rem;
+    }
+
+    .mobile-drawer__footer a {
+      display: inline-block;
+      margin-top: 14px;
+      color: var(--champagne);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    /* =========================================
+       HERO VIDEO
+    ========================================= */
+
+    .hero {
+      position: relative;
+      display: grid;
+      min-height: 100svh;
+      place-items: center;
+      overflow: hidden;
+      color: var(--ivory);
+      background: var(--midnight);
+    }
+
+    .hero__video,
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero__video {
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero__overlay {
+      z-index: 2;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(16, 37, 66, 0.86),
+          rgba(16, 37, 66, 0.28)
+        ),
+        linear-gradient(
+          0deg,
+          rgba(16, 37, 66, 0.38),
+          transparent 55%
+        );
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 3;
+      width: min(850px, calc(100% - 40px));
+      margin-top: 80px;
+      opacity: 0;
+      transform: translateY(35px);
+    }
+
+    .hero h1 {
+      max-width: 760px;
+      margin: 22px 0;
+    }
+
+    .hero__description {
+      max-width: 510px;
+      color: rgba(250, 248, 245, 0.78);
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .hero .button {
+      color: var(--ivory);
+    }
+
+    .hero .button--dark {
+      background: transparent;
+      border-color: var(--champagne);
+    }
+
+    .hero__scroll {
+      position: absolute;
+      z-index: 3;
+      bottom: 28px;
+      left: 50%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--champagne);
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transform: translateX(-50%);
+    }
+
+    .hero__scroll::before {
+      width: 42px;
+      height: 1px;
+      content: "";
+      background: var(--champagne);
+    }
+/* =========================================
+   WEDDING EVENTS MARQUEE
+========================================= */
+
+.marquee {
+  overflow: hidden;
+  padding: 22px 0;
+  color: var(--ivory);
+  background: var(--midnight);
+  white-space: nowrap;
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 25s linear infinite;
+}
+
+.marquee__group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-right: 20px;
+}
+
+.marquee__word {
+  color: var(--ivory);
+  font-family: var(--heading-font);
+  font-size: clamp(1.5rem, 3vw, 2.7rem);
+  font-style: italic;
+  line-height: 1;
+}
+
+.marquee__word--outline {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--champagne);
+}
+
+.marquee__diamond {
+  color: var(--brass);
+  font-size: 1rem;
+}
+
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track {
+    animation: none;
+  }
+}
+    /* =========================================
+       SLIDING GATE SECTION
+    ========================================= */
+
+    .gate-section {
+      position: relative;
+      min-height: 220svh;
+      background: var(--midnight);
+    }
+
+    .gate-stage {
+      position: sticky;
+      top: 0;
+      display: grid;
+      min-height: 100svh;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .gate-image {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      transform: scale(1.1);
+      will-change: transform;
+    }
+
+    .gate-image img {
+      width: 100%;
+      height: 100%;
+      filter: brightness(0.83);
+      object-fit: cover;
+    }
+
+    .gate-copy {
+      position: relative;
+      z-index: 2;
+      max-width: 650px;
+      padding: 40px 20px;
+      color: var(--ivory);
+      text-align: center;
+      opacity: 0;
+      transform: translateY(22px);
+      pointer-events: none;
+    }
+
+    .gate-copy h2 {
+      margin: 16px 0;
+    }
+
+    .gate-copy p {
+      max-width: 470px;
+      margin: auto;
+      color: rgba(250, 248, 245, 0.8);
+    }
+
+    /*
+      Flat doors:
+      - No perspective.
+      - No rotateY.
+      - Left door slides left.
+      - Right door slides right.
+    */
+
+    .gate-doors {
+      position: absolute;
+      z-index: 3;
+      inset: 0;
+      display: flex;
+      overflow: hidden;
+      pointer-events: none;
+      perspective: none;
+    }
+
+    .door-left,
+    .door-right {
+      position: relative;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(4, 15, 28, 0.08), rgba(4, 15, 28, 0.5)),
+        linear-gradient(90deg, var(--sapphire), var(--midnight));
+      box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.28);
+      transform: none;
+      transform-origin: center;
+      will-change: transform;
+    }
+
+    .door-left::before,
+    .door-right::before {
+      position: absolute;
+      inset: 8%;
+      content: "";
+      border: 1px solid rgba(216, 195, 165, 0.56);
+      box-shadow:
+        inset 0 0 0 10px rgba(16, 37, 66, 0.34),
+        inset 0 0 0 11px rgba(216, 195, 165, 0.18);
+      pointer-events: none;
+    }
+
+    .door-left::after,
+    .door-right::after {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      content: "";
+      background: var(--brass);
+      opacity: 0.8;
+    }
+
+    .door-left::after {
+      right: 0;
+    }
+
+    .door-right::after {
+      left: 0;
+    }
+
+    .gate-center-light {
+      position: absolute;
+      z-index: 5;
+      top: 12%;
+      left: 50%;
+      width: 2px;
+      height: 76%;
+      background: var(--brass);
+      box-shadow:
+        0 0 12px rgba(199, 156, 90, 0.9),
+        0 0 28px rgba(199, 156, 90, 0.45);
+      opacity: 0;
+      transform: translateX(-50%) scaleY(0);
+      transform-origin: center;
+      will-change: transform, opacity;
+    }
+
+    .gate-handle {
+      position: absolute;
+      top: 50%;
+      z-index: 2;
+      width: 13px;
+      height: 13px;
+      border: 2px solid var(--brass);
+      border-radius: 50%;
+      background: var(--champagne);
+      transform: translateY(-50%);
+    }
+
+    .door-left .gate-handle {
+      right: 7%;
+    }
+
+    .door-right .gate-handle {
+      left: 7%;
+    }
+
+    /* =========================================
+       INTRODUCTION
+    ========================================= */
+
+    .intro {
+      padding: var(--section-padding) 0;
+      background: var(--ivory);
+    }
+
+    .intro__grid {
+      display: grid;
+      gap: 40px;
+    }
+
+    .intro__title h2 {
+      max-width: 680px;
+      margin-top: 18px;
+    }
+
+    .intro__copy {
+      max-width: 470px;
+      align-self: end;
+    }
+
+    .intro__copy p + p {
+      margin-top: 16px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px 18px;
+      margin-top: 70px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(16, 37, 66, 0.16);
+    }
+
+    .stat__number {
+      display: block;
+      color: var(--brass);
+      font-family: var(--heading-font);
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      line-height: 1;
+    }
+
+    .stat__label {
+      display: block;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.73rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* =========================================
+       SECOND IMAGE REVEAL
+    ========================================= */
+
+    .image-reveal-section {
+      position: relative;
+      min-height: 170svh;
+      background: var(--sapphire);
+    }
+
+    .image-reveal-stage {
+      position: sticky;
+      top: 0;
+      min-height: 100svh;
+      overflow: hidden;
+    }
+
+    .revealed-image {
+      position: absolute;
+      inset: 0;
+      transform: scale(1.1);
+      will-change: transform;
+    }
+
+    .revealed-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .reveal-overlay {
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      background: var(--midnight);
+      will-change: transform;
+    }
+
+    .reveal-content {
+      position: absolute;
+      z-index: 3;
+      top: 50%;
+      left: 50%;
+      width: min(620px, calc(100% - 40px));
+      color: var(--ivory);
+      text-align: center;
+      transform: translate(-50%, -50%);
+    }
+
+    .reveal-content h2 {
+      margin: 16px 0;
+    }
+
+    .reveal-content p {
+      color: rgba(250, 248, 245, 0.8);
+    }
+
+    /* =========================================
+       SERVICES
+    ========================================= */
+
+    .services {
+      padding: var(--section-padding) 0;
+      background: var(--ivory);
+    }
+
+    .section-heading {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 48px;
+    }
+
+    .section-heading h2 {
+      max-width: 650px;
+      margin-top: 16px;
+    }
+
+    .section-heading p {
+      max-width: 360px;
+    }
+
+    .services__grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .service-card {
+      min-height: 280px;
+      padding: 28px;
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: 0 14px 40px rgba(16, 37, 66, 0.06);
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 50px rgba(16, 37, 66, 0.13);
+    }
+
+    .service-card__number {
+      color: var(--brass);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+
+    .service-card h3 {
+      margin: 60px 0 12px;
+    }
+
+    /* =========================================
+       CTA AND FOOTER
+    ========================================= */
+
+    .cta {
+      position: relative;
+      overflow: hidden;
+      padding: var(--section-padding) 0;
+      color: var(--ivory);
+      background: var(--midnight);
+    }
+
+    .cta::before {
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      border: 1px solid rgba(199, 156, 90, 0.28);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .cta__inner {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      justify-content: space-between;
+      gap: 35px;
+    }
+
+    .cta h2 {
+      max-width: 700px;
+      margin-top: 16px;
+    }
+
+    .cta p {
+      max-width: 430px;
+      color: rgba(250, 248, 245, 0.72);
+    }
+
+    .cta .button {
+      margin-top: 22px;
+      color: var(--ivory);
+    }
+
+    footer {
+      padding: 28px 0;
+      color: rgba(250, 248, 245, 0.68);
+      background: #0b1b31;
+      font-size: 0.78rem;
+    }
+
+    .footer__inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    /* =========================================
+       RESPONSIVE
+    ========================================= */
+
+    @media (min-width: 768px) {
+      .container,
+      .hero__content {
+        width: min(1180px, calc(100% - 80px));
+      }
+
+      .nav-links,
+      .navbar > .container > .button {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: none;
+      }
+
+      .intro__grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 80px;
+      }
+
+      .stats {
+        grid-column: 1 / -1;
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .services__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .services__grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .service-card {
+        min-height: 330px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .preloader {
+        display: none;
+      }
+
+      .hero__video {
+        display: none;
+      }
+
+      .hero {
+        background:
+          linear-gradient(
+            90deg,
+            rgba(16, 37, 66, 0.86),
+            rgba(16, 37, 66, 0.28)
+          ),
+          url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2200&q=85")
+            center / cover;
+      }
+
+      .hero__content,
+      .gate-copy,
+      .door-left,
+      .door-right,
+      .gate-image,
+      .revealed-image,
+      .reveal-overlay,
+      .gate-center-light {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .door-left,
+      .door-right {
+        display: none;
+      }
+    }
+.hero__slides{position:absolute;z-index:1;inset:0;overflow:hidden}.hero__slide{position:absolute;inset:0;overflow:hidden;opacity:0;transition:opacity 1.4s ease}.hero__slide.is-active{opacity:1}.hero__slide img{width:100%;height:100%;object-fit:cover;transform:scale(1)}.hero__slide.is-active img{animation:hero-slide-zoom 6.4s ease-out both}@keyframes hero-slide-zoom{to{transform:scale(1.08)}}.hero__controls{position:absolute;z-index:4;right:20px;bottom:24px;display:flex;align-items:center;gap:10px}.hero__arrow{display:grid;width:42px;height:42px;place-items:center;border:1px solid var(--champagne);border-radius:50%;color:var(--ivory);background:transparent;cursor:pointer;font-size:1.25rem}.hero__counter{min-width:58px;color:var(--champagne);font-size:.7rem;font-weight:700;letter-spacing:.12em;text-align:center}.gate-image::after{position:absolute;inset:0;content:"";background:linear-gradient(90deg,rgba(16,37,66,.48),rgba(16,37,66,.12))}@media(prefers-reduced-motion:reduce){.hero__slide:not(:first-child),.hero__controls{display:none}.hero__slide img{animation:none!important}}
+  </style>
+</head>
+
+<body class="is-loading preloader-active">
+  <!-- =========================================
+       PRELOADER
+  ========================================= -->
+
+  <div class="preloader" aria-hidden="true">
+    <div class="preloader__content">
+      <span class="preloader__brand">Decor By Pearls</span>
+
+      <hr class="preloader__line" />
+
+      <span class="preloader__subtitle">Luxury weddings</span>
+    </div>
+
+    <div class="preloader__curtain"></div>
+  </div>
+
+  <!-- =========================================
+       NAVBAR
+  ========================================= -->
+
+  <header class="navbar" id="navbar">
+    <div class="container navbar__inner">
+      <a class="logo" href="#top" aria-label="Decor By Pearls home">
+        Decor By Pearls
+        <small>Luxury weddings</small>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#journal">Journal</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a class="button" href="#contact">Plan Your Event</a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-drawer"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- =========================================
+       MOBILE DRAWER
+  ========================================= -->
+
+  <div class="drawer-backdrop" data-menu-close></div>
+
+  <aside
+    class="mobile-drawer"
+    id="mobile-drawer"
+    aria-hidden="true"
+    aria-label="Mobile navigation"
+  >
+    <div class="mobile-drawer__top">
+      <span class="mobile-drawer__label">Navigation</span>
+
+      <button
+        class="drawer-close"
+        type="button"
+        aria-label="Close navigation menu"
+        data-menu-close
+      >
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <nav class="mobile-drawer__links" aria-label="Mobile navigation links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#journal">Journal</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="mobile-drawer__footer">
+      <p>Luxury weddings across Chandigarh, Mohali, Zirakpur, and beyond.</p>
+      <a href="tel:+919876543210">+91 98765 43210</a>
+    </div>
+  </aside>
+
+  <main id="top">
+    <!-- =========================================
+         HERO VIDEO
+    ========================================= -->
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__slides" aria-hidden="true"><div class="hero__slide is-active"><img src="https://images.unsplash.com/photo-1587271407850-8d438ca9fdf2?auto=format&fit=crop&w=2200&q=85" alt="" /></div><div class="hero__slide "><img src="https://images.unsplash.com/photo-1604601687910-23dff7d1006d?auto=format&fit=crop&w=2200&q=85" alt="" /></div><div class="hero__slide "><img src="https://i.pinimg.com/736x/34/6b/81/346b811aa470ba6ca70b7299e1d7c18b.jpg" alt="" /></div><div class="hero__slide "><img src="https://i.pinimg.com/736x/a3/9d/ea/a39dea85f977b42f31b7c93af56d0183.jpg" alt="" /></div><div class="hero__slide "><img src="https://i.pinimg.com/736x/6c/85/1d/6c851de6e1034b5ed3127e782d962150.jpg" alt="" /></div><div class="hero__slide "><img src="https://i.pinimg.com/736x/14/cf/26/14cf264716d49a1467bdb3678d4274f8.jpg" alt="" /></div></div>
+
+      <div class="hero__overlay" aria-hidden="true"></div>
+
+      <div class="hero__content">
+        <span class="eyebrow">Interior architecture · Chandigarh & beyond</span>
+
+        <h1 id="hero-title">Exquisite Venues For You</h1>
+
+        <p class="hero__description">
+          Decor By Pearls shapes refined homes, hospitality spaces, and private
+          retreats where thoughtful design meets timeless Indian craft.
+        </p>
+
+        <div class="hero__actions">
+          <a class="button" href="#services">Explore Services</a>
+
+          <a class="button button--dark" href="#contact">
+            View Gallery
+          </a>
+        </div>
+      </div>
+
+      <a class="hero__scroll" href="#gate">Scroll to enter</a>
+      <div class="hero__controls" aria-label="Hero slideshow controls"><button class="hero__arrow" type="button" data-slide-prev aria-label="Previous image"></button><span class="hero__counter"><span data-slide-current></span> </span><button class="hero__arrow" type="button" data-slide-next aria-label="Next image"></button></div>
+    </section>
+ <!-- =========================================
+     WEDDING EVENTS MARQUEE
+========================================= -->
+
+<section class="marquee" aria-label="Wedding celebrations">
+  <div class="marquee__track">
+    <div class="marquee__group">
+      <span class="marquee__word marquee__word--outline">Sangeet</span>
+      <span class="marquee__diamond">◆</span>
+
+      <span class="marquee__word">Mehendi</span>
+      <span class="marquee__diamond">◆</span>
+
+      <span class="marquee__word marquee__word--outline">Haldi</span>
+      <span class="marquee__diamond">◆</span>
+
+      <span class="marquee__word">Baraat</span>
+      <span class="marquee__diamond">◆</span>
+
+      <span class="marquee__word marquee__word--outline">Pheras</span>
+      <span class="marquee__diamond">◆</span>
+
+      <span class="marquee__word">Receptions</span>
+      <span class="marquee__diamond">◆</span>
+
+      <span class="marquee__word marquee__word--outline">
+        Celebrations
+      </span>
+      <span class="marquee__diamond">◆</span>
+    </div>
+
+    <!-- Duplicate group required for a seamless infinite loop -->
+    <div class="marquee__group" aria-hidden="true">
+      <span class="marquee__word marquee__word--outline">Sangeet</span>
+      <span class="marquee__diamond">◆</span>
+
+      <span class="marquee__word">Mehendi</span>
+      <span class="marquee__diamond">◆</span>
+
+      <span class="marquee__word marquee__word--outline">Haldi</span>
+      <span class="marquee__diamond">◆</span>
+
+      <span class="marquee__word">Baraat</span>
+      <span class="marquee__diamond">◆</span>
+
+      <span class="marquee__word marquee__word--outline">Pheras</span>
+      <span class="marquee__diamond">◆</span>
+
+      <span class="marquee__word">Receptions</span>
+      <span class="marquee__diamond">◆</span>
+
+      <span class="marquee__word marquee__word--outline">
+        Celebrations
+      </span>
+      <span class="marquee__diamond">◆</span>
+    </div>
+  </div>
+</section>
+    <!-- =========================================
+         SLIDING GATE
+    ========================================= -->
+
+    <section class="gate-section" id="gate" aria-label="Enter Decor By Pearls">
+      <div class="gate-stage">
+        <div class="gate-image">
+          <img
+            src="https://i.pinimg.com/736x/21/46/36/214636364ca2175c12b3fd5cd9fee710.jpg"
+            alt="Elegant luxury living room with warm lighting and refined furnishings"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="gate-copy">
+          <span class="eyebrow">A considered approach</span>
+
+          <h2>Every room should feel discovered.</h2>
+
+          <p>
+            We combine proportion, material, light, and local character to
+            create interiors that feel personal rather than simply polished.
+          </p>
+        </div>
+
+        <div class="gate-doors" aria-hidden="true">
+          <div class="door-left">
+            <span class="gate-handle"></span>
+          </div>
+
+          <div class="gate-center-light"></div>
+
+          <div class="door-right">
+            <span class="gate-handle"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         ABOUT
+    ========================================= -->
+
+    <section class="intro" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="intro__grid">
+          <div class="intro__title">
+            <span class="eyebrow">Our philosophy</span>
+
+            <h2 id="about-title">
+              We Turn Dreams Into Memories
+            </h2>
+          </div>
+
+          <div class="intro__copy">
+            <p>
+              At Decor By Pearls, we believe that your wedding day is one of the most special days in your life. Our passionate team of wedding artisans and event designers craft each celebration as a unique masterpiece.
+            </p>
+
+            <p>
+              From intimate garden ceremonies in Chandigarh to grand destination weddings, we handle every detail with meticulous care — sourcing the finest vendors, curating breathtaking décor, and orchestrating flawless events across the Tricity and India's most iconic locations.
+            </p>
+          </div>
+
+          <div class="stats" aria-label="Decor By Pearls figures">
+            <div>
+              <span class="stat__number" data-target="12">0</span>
+              <span class="stat__label">Years of practice</span>
+            </div>
+
+            <div>
+              <span class="stat__number" data-target="86">0</span>
+              <span class="stat__label">Spaces completed</span>
+            </div>
+
+            <div>
+              <span class="stat__number" data-target="14">0</span>
+              <span class="stat__label">Cities reached</span>
+            </div>
+
+            <div>
+              <span class="stat__number" data-target="98">0</span>
+              <span class="stat__label">Client satisfaction</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         SECOND IMAGE REVEAL
+    ========================================= -->
+
+    <section
+      class="image-reveal-section"
+      id="journal"
+      aria-label="Design detail reveal"
+    >
+      <div class="image-reveal-stage">
+        <div class="revealed-image">
+          <img
+            src="https://i.pinimg.com/736x/7c/64/38/7c643820d3f45b8dd6a7d48d7373c853.jpg"
+            alt="Sophisticated interior with a sculptural chair, artwork, and natural textures"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="reveal-overlay"></div>
+
+        <div class="reveal-content">
+          <span class="eyebrow">The details matter</span>
+
+          <h2>Beauty reveals itself slowly.</h2>
+
+          <p>
+            Natural stone, hand-finished wood, woven textures, and considered
+            light come together in spaces made to last.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         SERVICES
+    ========================================= -->
+
+    <section class="services" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">What we do</span>
+
+            <h2 id="services-title">From first idea to final detail.</h2>
+          </div>
+
+          <p>
+            A complete design service for homes, boutique hospitality, and
+            spaces with a distinct point of view.
+          </p>
+        </div>
+
+        <div class="services__grid">
+          <article class="service-card">
+            <span class="service-card__number">01 / 04</span>
+
+            <h3>Interior Architecture</h3>
+
+            <p>
+              Spatial planning, material palettes, lighting, and architectural
+              details shaped around your way of living.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <span class="service-card__number">02 / 04</span>
+
+            <h3>Residential Design</h3>
+
+            <p>
+              Personal homes that balance everyday comfort with enduring
+              character and quiet sophistication.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <span class="service-card__number">03 / 04</span>
+
+            <h3>Hospitality Spaces</h3>
+
+            <p>
+              Boutique hotels, retreats, and restaurants designed to leave a
+              lasting impression on every guest.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <span class="service-card__number">04 / 04</span>
+
+            <h3>Styling & Curation</h3>
+
+            <p>
+              Art, furniture, objects, and finishing touches that give each
+              room its own identity.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         CONTACT
+    ========================================= -->
+
+    <section class="cta" id="contact" aria-labelledby="contact-title">
+      <div class="container cta__inner">
+        <div>
+          <span class="eyebrow">Your next chapter</span>
+
+          <h2 id="contact-title">
+            Let’s create a space worth returning to.
+          </h2>
+        </div>
+
+        <div>
+          <p>
+            Tell us about your project, your aspirations, and the feeling you
+            want it to hold.
+          </p>
+
+          <a class="button" href="tel:+919876543210">
+            Call +91 98765 43210
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer__inner">
+      <span>© 2026 Decor By Pearls</span>
+      <span>Chandigarh · Mohali · Zirakpur</span>
+      <span>hello@maisonaurelia.in</span>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+
+  <script>
+    (() => {
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      const body = document.body;
+      const preloader = document.querySelector(".preloader");
+      const preloaderBrand = document.querySelector(".preloader__brand");
+      const preloaderLine = document.querySelector(".preloader__line");
+      const preloaderSubtitle = document.querySelector(
+        ".preloader__subtitle"
+      );
+      const preloaderCurtain = document.querySelector(".preloader__curtain");
+
+      const navbar = document.querySelector("#navbar");
+
+      const menuToggle = document.querySelector(".menu-toggle");
+      const mobileDrawer = document.querySelector(".mobile-drawer");
+      const drawerBackdrop = document.querySelector(".drawer-backdrop");
+      const drawerCloseButtons = document.querySelectorAll(
+        "[data-menu-close]"
+      );
+      const drawerLinks = document.querySelectorAll(
+        ".mobile-drawer__links a"
+      );
+      const drawerFooter = document.querySelector(
+        ".mobile-drawer__footer"
+      );
+
+      let isMenuOpen = false;
+      let menuTimeline = null;
+
+      /* =========================================
+         NAVBAR
+      ========================================= */
+
+      function updateNavbar() {
+        navbar.classList.toggle("is-scrolled", window.scrollY > 80);
+      }
+
+      updateNavbar();
+
+      window.addEventListener("scroll", updateNavbar, {
+        passive: true
+      });
+
+      /* =========================================
+         MOBILE DRAWER
+      ========================================= */
+
+      function setDrawerAccessibility(isOpen) {
+        mobileDrawer.setAttribute("aria-hidden", String(!isOpen));
+
+        menuToggle.setAttribute(
+          "aria-expanded",
+          String(isOpen)
+        );
+
+        menuToggle.setAttribute(
+          "aria-label",
+          isOpen
+            ? "Close navigation menu"
+            : "Open navigation menu"
+        );
+      }
+
+      function openDrawerWithoutAnimation() {
+        mobileDrawer.style.visibility = "visible";
+        mobileDrawer.style.pointerEvents = "auto";
+        mobileDrawer.style.transform = "translateX(0)";
+
+        drawerBackdrop.style.visibility = "visible";
+        drawerBackdrop.style.pointerEvents = "auto";
+        drawerBackdrop.style.opacity = "1";
+
+        drawerLinks.forEach((link) => {
+          link.style.opacity = "1";
+          link.style.transform = "translateX(0)";
+        });
+
+        drawerFooter.style.opacity = "1";
+        drawerFooter.style.transform = "translateY(0)";
+
+        menuToggle.classList.add("is-active");
+        body.classList.add("menu-open");
+        setDrawerAccessibility(true);
+      }
+
+      function closeDrawerWithoutAnimation() {
+        mobileDrawer.style.visibility = "hidden";
+        mobileDrawer.style.pointerEvents = "none";
+        mobileDrawer.style.transform = "translateX(105%)";
+
+        drawerBackdrop.style.visibility = "hidden";
+        drawerBackdrop.style.pointerEvents = "none";
+        drawerBackdrop.style.opacity = "0";
+
+        drawerLinks.forEach((link) => {
+          link.style.opacity = "0";
+          link.style.transform = "translateX(24px)";
+        });
+
+        drawerFooter.style.opacity = "0";
+        drawerFooter.style.transform = "translateY(18px)";
+
+        menuToggle.classList.remove("is-active");
+        body.classList.remove("menu-open");
+        setDrawerAccessibility(false);
+      }
+
+      function setupMenuAnimation() {
+        if (
+          typeof gsap === "undefined" ||
+          prefersReducedMotion
+        ) {
+          return;
+        }
+
+        gsap.set(mobileDrawer, {
+          xPercent: 105,
+          autoAlpha: 0
+        });
+
+        gsap.set(drawerBackdrop, {
+          autoAlpha: 0
+        });
+
+        gsap.set([...drawerLinks, drawerFooter], {
+          x: 24,
+          autoAlpha: 0
+        });
+
+        menuTimeline = gsap.timeline({
+          paused: true,
+          defaults: {
+            ease: "power3.out"
+          },
+          onStart: () => {
+            mobileDrawer.style.visibility = "visible";
+            mobileDrawer.style.pointerEvents = "auto";
+
+            drawerBackdrop.style.visibility = "visible";
+            drawerBackdrop.style.pointerEvents = "auto";
+
+            menuToggle.classList.add("is-active");
+            body.classList.add("menu-open");
+            setDrawerAccessibility(true);
+          },
+          onReverseComplete: () => {
+            mobileDrawer.style.visibility = "hidden";
+            mobileDrawer.style.pointerEvents = "none";
+
+            drawerBackdrop.style.visibility = "hidden";
+            drawerBackdrop.style.pointerEvents = "none";
+
+            menuToggle.classList.remove("is-active");
+            body.classList.remove("menu-open");
+            setDrawerAccessibility(false);
+          }
+        });
+
+        menuTimeline
+          .to(
+            drawerBackdrop,
+            {
+              autoAlpha: 1,
+              duration: 0.35
+            },
+            0
+          )
+          .to(
+            mobileDrawer,
+            {
+              xPercent: 0,
+              autoAlpha: 1,
+              duration: 0.65
+            },
+            0
+          )
+          .to(
+            drawerLinks,
+            {
+              x: 0,
+              autoAlpha: 1,
+              duration: 0.55,
+              stagger: 0.08
+            },
+            0.25
+          )
+          .to(
+            drawerFooter,
+            {
+              x: 0,
+              autoAlpha: 1,
+              duration: 0.45
+            },
+            0.56
+          );
+      }
+
+      function openDrawer() {
+        if (isMenuOpen) return;
+
+        isMenuOpen = true;
+
+        if (menuTimeline) {
+          menuTimeline.play();
+        } else {
+          openDrawerWithoutAnimation();
+        }
+      }
+
+      function closeDrawer() {
+        if (!isMenuOpen) return;
+
+        isMenuOpen = false;
+
+        if (menuTimeline) {
+          menuTimeline.reverse();
+        } else {
+          closeDrawerWithoutAnimation();
+        }
+      }
+
+      menuToggle.addEventListener("click", () => {
+        isMenuOpen ? closeDrawer() : openDrawer();
+      });
+
+      drawerCloseButtons.forEach((button) => {
+        button.addEventListener("click", closeDrawer);
+      });
+
+      drawerLinks.forEach((link) => {
+        link.addEventListener("click", closeDrawer);
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeDrawer();
+        }
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth >= 768 && isMenuOpen) {
+          closeDrawer();
+        }
+      });
+
+      /* =========================================
+         HERO CONTENT
+      ========================================= */
+
+      function showHeroContent() {
+        const heroContent = document.querySelector(".hero__content");
+
+        if (
+          prefersReducedMotion ||
+          typeof gsap === "undefined"
+        ) {
+          heroContent.style.opacity = "1";
+          heroContent.style.transform = "none";
+          return;
+        }
+
+        gsap.to(heroContent, {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: "power3.out"
+        });
+
+        gsap.from(".hero__content > *", {
+          y: 25,
+          opacity: 0,
+          duration: 0.75,
+          stagger: 0.1,
+          ease: "power3.out",
+          delay: 0.1
+        });
+      }
+
+      /* =========================================
+         PRELOADER
+      ========================================= */
+
+      function finishPreloader() {
+        if (
+          prefersReducedMotion ||
+          typeof gsap === "undefined"
+        ) {
+          preloader.remove();
+          body.classList.remove(
+            "is-loading",
+            "preloader-active"
+          );
+          showHeroContent();
+          return;
+        }
+
+        const loaderTimeline = gsap.timeline({
+          defaults: {
+            ease: "power3.inOut"
+          },
+          onComplete: () => {
+            preloader.remove();
+
+            body.classList.remove(
+              "is-loading",
+              "preloader-active"
+            );
+
+            showHeroContent();
+
+            if (typeof ScrollTrigger !== "undefined") {
+              ScrollTrigger.refresh();
+            }
+          }
+        });
+
+        loaderTimeline
+          .to(
+            [preloaderBrand, preloaderLine, preloaderSubtitle],
+            {
+              y: -18,
+              opacity: 0,
+              duration: 0.35,
+              stagger: 0.05,
+              ease: "power2.in"
+            }
+          )
+          .to(
+            preloaderCurtain,
+            {
+              yPercent: -100,
+              duration: 0.95,
+              ease: "power4.inOut"
+            },
+            "-=0.05"
+          )
+          .to(
+            preloader,
+            {
+              autoAlpha: 0,
+              duration: 0.2
+            },
+            "-=0.15"
+          );
+      }
+
+      function startPreloader() {
+        if (
+          prefersReducedMotion ||
+          typeof gsap === "undefined"
+        ) {
+          finishPreloader();
+          return;
+        }
+
+        gsap.fromTo(
+          preloaderBrand,
+          {
+            y: 20,
+            opacity: 0
+          },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.75,
+            ease: "power3.out"
+          }
+        );
+
+        gsap.fromTo(
+          preloaderLine,
+          {
+            scaleX: 0,
+            opacity: 0
+          },
+          {
+            scaleX: 1,
+            opacity: 1,
+            duration: 0.55,
+            delay: 0.22,
+            ease: "power3.out"
+          }
+        );
+
+        gsap.fromTo(
+          preloaderSubtitle,
+          {
+            y: 10,
+            opacity: 0
+          },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.5,
+            delay: 0.3,
+            ease: "power3.out"
+          }
+        );
+
+        /*
+          The curtain starts once after approximately 1.25 seconds.
+        */
+        window.setTimeout(finishPreloader, 1250);
+      }
+
+      /* =========================================
+         GSAP SCROLL ANIMATIONS
+      ========================================= */
+
+      if (
+        typeof gsap !== "undefined" &&
+        !prefersReducedMotion
+      ) {
+        gsap.registerPlugin(ScrollTrigger);
+
+        /* Hero video */
+
+        const heroVideo = document.querySelector("#hero-video");
+
+        if (heroVideo) {
+          heroVideo.muted = true;
+          heroVideo.playsInline = true;
+
+          heroVideo.play().catch(() => {
+            /*
+              If autoplay is blocked, the poster remains visible.
+            */
+          });
+        }
+
+        /* Sliding gate */
+        gsap.set(".gate-doors", { autoAlpha: 1 });
+        gsap.set(".door-left", { xPercent: 0 }); gsap.set(".door-right", { xPercent: 0 });
+        gsap.set(".gate-center-light", { opacity: 0, scaleY: 0 }); gsap.set(".gate-image", { scale: 1.1 }); gsap.set(".gate-copy", { opacity: 0, y: 22 });
+        const gateTimeline = gsap.timeline({ scrollTrigger:{trigger:"#gate",start:"top top",end:"+=140%",scrub:1,pin:true,anticipatePin:1,invalidateOnRefresh:true} });
+        gateTimeline.to(".gate-center-light",{opacity:1,scaleY:1,duration:.14},0).to(".door-left",{xPercent:-105,duration:.5,ease:"power3.inOut"},.12).to(".door-right",{xPercent:105,duration:.5,ease:"power3.inOut"},.12).to(".gate-image",{scale:1,duration:.62,ease:"none"},.12).to(".gate-center-light",{opacity:0,scaleY:0,duration:.16},.42).to(".gate-copy",{opacity:1,y:0,duration:.22,ease:"power3.out"},.5).set(".gate-doors",{autoAlpha:0},.72);
+
+        /* Second image reveal */
+
+        const revealTimeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".image-reveal-section",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1
+          }
+        });
+
+        revealTimeline
+          .to(
+            ".reveal-overlay",
+            {
+              yPercent: -100,
+              ease: "none"
+            },
+            0
+          )
+          .to(
+            ".revealed-image",
+            {
+              scale: 1,
+              ease: "none"
+            },
+            0
+          );
+
+        /* Counters */
+
+        gsap.utils.toArray(".stat__number").forEach((counter) => {
+          const target = Number(counter.dataset.target);
+
+          gsap.fromTo(
+            counter,
+            {
+              textContent: 0
+            },
+            {
+              textContent: target,
+              duration: 1.6,
+              ease: "power2.out",
+              snap: {
+                textContent: 1
+              },
+              scrollTrigger: {
+                trigger: counter,
+                start: "top 85%",
+                once: true
+              },
+              onUpdate() {
+                const value = Math.round(
+                  Number(counter.textContent)
+                );
+
+                counter.textContent =
+                  value + (target === 98 ? "%" : "+");
+              }
+            }
+          );
+        });
+
+        /* Service cards */
+
+        gsap.from(".service-card", {
+          y: 35,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".services__grid",
+            start: "top 80%"
+          }
+        });
+      }
+
+
+      const hero = document.querySelector(".hero"), heroSlides = [...document.querySelectorAll(".hero__slide")], currentSlideNumber = document.querySelector("[data-slide-current]");
+      let activeSlideIndex = 0, slideshowTimer = null, touchStartX = 0;
+      function showSlide(index) { activeSlideIndex=(index+heroSlides.length)%heroSlides.length; heroSlides.forEach((slide,i)=>slide.classList.toggle("is-active",i===activeSlideIndex)); currentSlideNumber.textContent=String(activeSlideIndex+1).padStart(2,"0"); }
+      function stopSlideshow(){clearInterval(slideshowTimer);slideshowTimer=null;}
+      function startSlideshow(){if(!prefersReducedMotion&&!slideshowTimer)slideshowTimer=setInterval(()=>showSlide(activeSlideIndex+1),5000);}
+      document.querySelector("[data-slide-prev]").addEventListener("click",()=>{showSlide(activeSlideIndex-1);stopSlideshow();startSlideshow();});
+      document.querySelector("[data-slide-next]").addEventListener("click",()=>{showSlide(activeSlideIndex+1);stopSlideshow();startSlideshow();});
+      hero.addEventListener("mouseenter",stopSlideshow);hero.addEventListener("mouseleave",startSlideshow);
+      hero.addEventListener("touchstart",e=>touchStartX=e.changedTouches[0].screenX,{passive:true});hero.addEventListener("touchend",e=>{const d=e.changedTouches[0].screenX-touchStartX;if(Math.abs(d)>40){showSlide(activeSlideIndex+(d>0?-1:1));stopSlideshow();startSlideshow();}},{passive:true});
+      startSlideshow();
+
+      startPreloader();
+    })();
+  </script>
+</body>
+</html>
